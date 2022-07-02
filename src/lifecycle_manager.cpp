@@ -9,10 +9,12 @@ namespace template_lifecycle_manager
 // ========== コンストラクタ ========== //
 LifecycleManager::LifecycleManager(
   const rclcpp::NodeOptions& options
-): Node("lifecycle_manager", "", options)
+): Node("lifecycle_manager", options)
 {
   using namespace std::placeholders;
   using namespace std::chrono_literals;
+
+  RCLCPP_INFO(this->get_logger(), "Creating");
 
   /*** パラメータの準備 ***/
   node_names_ = this->declare_parameter<std::vector<std::string>>("node_names", std::vector<std::string>(0,""));
