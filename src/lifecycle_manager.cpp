@@ -1,7 +1,7 @@
 #include "template_lifecycle_manager/lifecycle_manager.hpp"
 
-//#define ANSI_COLOR_RESET "\033[0m"
-//#define ANSI_COLOR_BOLD_BLUE "\033[1;34m"
+#define ANSI_COLOR_RESET "\033[0m"
+#define ANSI_COLOR_BOLD_BLUE "\033[1;34m"
 
 namespace template_lifecycle_manager
 {
@@ -68,6 +68,11 @@ void LifecycleManager::callbackManager(
   }
   
   res->success = success_;
+
+  if(checkStateForAllNodes(lifecycle_msgs::msg::State::PRIMARY_STATE_ACTIVE))
+  {
+    RCLCPP_INFO(this->get_logger(), ANSI_COLOR_BOLD_BLUE "All requested nodes are active." ANSI_COLOR_RESET);
+  }
 }
 
 // ========== 1つのノードの状態を取得する関数 ========== //
@@ -221,6 +226,8 @@ void LifecycleManager::autoStartUp()
     RCLCPP_ERROR(this->get_logger(), "Failed to change activated nodes");
     return;
   }
+
+  RCLCPP_INFO(this->get_logger(), ANSI_COLOR_BOLD_BLUE "All requested nodes are active." ANSI_COLOR_RESET);
   
   while(rclcpp::ok())
   {
