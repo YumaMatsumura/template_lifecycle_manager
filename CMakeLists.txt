@@ -41,5 +41,8 @@ rclcpp_components_register_nodes(${PROJECT_NAME}
 install(TARGETS ${PROJECT_NAME}
   DESTINATION lib
 )
+install(DIRECTORY launch
+  DESTINATION share/${PROJECT_NAME}/
+)
 
 ament_package()
