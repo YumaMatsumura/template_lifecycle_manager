@@ -188,6 +188,8 @@ void LifecycleManager::shutdownAllNodes()
 // ========== 自動起動する関数 ========== //
 void LifecycleManager::autoStartUp()
 {
+  using namespace std::chrono_literals;
+  
   if(node_names_.size() == 0)
   {
     RCLCPP_INFO(this->get_logger(), "Lifecycle node is none.");
@@ -231,6 +233,8 @@ void LifecycleManager::autoStartUp()
   
   while(rclcpp::ok())
   {
+    rclcpp::sleep_for(10s);
+
     /*** 全ノードがActivated状態か確認 ***/
     if(checkStateForAllNodes(lifecycle_msgs::msg::State::PRIMARY_STATE_ACTIVE))
     {
