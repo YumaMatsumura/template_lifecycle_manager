@@ -16,6 +16,11 @@ def generate_launch_description():
                 package='template_lifecycle_manager',
                 plugin='template_lifecycle_manager::LifecycleManager',
                 name='lifecycle_manager',
+                parameters=[
+                    {'node_names': ['']},
+                    {'autostart': True},
+                    {'timeout': 10.0}
+                ],
                 extra_arguments=[
                     {'use_intra_process_comms': True}
                 ]
