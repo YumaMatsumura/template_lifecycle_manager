@@ -17,7 +17,7 @@ def generate_launch_description():
                 plugin='template_lifecycle_manager::LifecycleManager',
                 name='lifecycle_manager',
                 parameters=[
-                    {'node_names': ['']},
+                    # {'node_names': ['']},
                     {'autostart': True},
                     {'timeout': 10.0}
                 ],
